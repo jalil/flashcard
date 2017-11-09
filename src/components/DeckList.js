@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { FlatList,View, Text } from 'react-native'
 import { Card, List, ListItem, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions/'
@@ -22,13 +22,14 @@ class DeckList extends Component {
   render () {
     return (
       <View style={{ width: 350 }}>
-        <Text>
-          {this.deckArray().map(deck =>
-            <Text key={deck.title}>
-              {deck.title}
-            </Text>
-          )};
-        </Text>
+	<FlatList data={this.deckArray()} renderItem={({item}) =>(
+	<ListItem
+	  title={item.title}
+	/>
+	)}
+>
+		
+	</FlatList>
       </View>
     )
   }

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { FlatList,View, Text } from 'react-native'
+import {TouchableOpacity, FlatList,View, Text } from 'react-native'
 import { Card, List, ListItem, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions/'
@@ -19,13 +19,15 @@ class DeckList extends Component {
     })
     return decks
   }
+
   render () {
     return (
       <View style={{ width: 350 }}>
-	<FlatList data={this.deckArray()} renderItem={({item}) =>(
+	<FlatList keyExtractor={item =>item.title} data={this.deckArray()} renderItem={({item}) =>(
 	<ListItem
-	  title={item.title}
-	/>
+	  title={item.title} 
+	  onPress={()=> console.log(item.title)}
+	/> 
 	)}
 >
 		
@@ -35,4 +37,15 @@ class DeckList extends Component {
   }
 }
 
+const styles = {
+ title: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "grey",
+    borderRadius: 5,
+    width: 240,
+    height: 70
+ }
+}
 export default connect(state => state)(DeckList)

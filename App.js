@@ -2,33 +2,57 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import DeckList from './src/components/DeckList'
 import Deck from './src/components/Deck'
-import AddCard from './src/components/AddCard'
+import NewDeck from './src/components/NewDeck'
+import Quiz from './src/components/Quiz'
 import { Header, Card, List, ListItem, Button } from 'react-native-elements'
 import reducer from './src/reducers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-const DATA = [
-  {
-    id: 1,
-    text: 'JAVASCRIPT'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+
+const Tabs = TabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      title: 'Deck List',
+      tabBarLabel: 'Deck List'
+    }
   },
-  {
-    id: 2,
-    text: 'REACTJS'
-  },
-  {
-    id: 2,
-    text: 'REACTJS'
-  },
-  {
-    id: 2,
-    text: 'REACTJS'
-  },
-  {
-    id: 2,
-    text: 'REACTJS'
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      title: 'New Deck',
+      tabBarLabel: 'New Deck'
+    }
   }
-]
+})
+
+const RootNavigator = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  DeckList: {
+    screen: DeckList
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      title: 'Deck'
+    }
+  },
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      title: 'Add New Question'
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz'
+    }
+  }
+})
 
 export default class App extends React.Component {
   renderDeck (deck) {
@@ -40,12 +64,11 @@ export default class App extends React.Component {
   }
   render () {
     return (
-
- <Provider store={createStore(reducer)}>
-      <View style={styles.container}>
-	<DeckList />
-      </View>
-</Provider>
+      <Provider store={createStore(reducer)}>
+        <View style={styles.container}>
+          <RootNavigator />
+        </View>
+      </Provider>
     )
   }
 }

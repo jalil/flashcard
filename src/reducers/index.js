@@ -1,94 +1,42 @@
-import {
-  NEW_DECK,
-  RECEIVE_DECKS,
-  REMOVE_DECK,
-  NEW_CARD,
-  PLAY_CARD
-} from '../actions';
-import { submitEntry } from '../../utils/api';
+import { RECEIVE_DECKS, ADD_NEW_DECK, ADD_NEW_CARD } from "../actions";
 
-export default function decks(state = {}, action) {
-  const { title, question, answer, result } = action;
+const initialState = {
+  decks: {}
+};
 
+function deck(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
       return {
         ...state,
-       decks: action.decks
+        decks: action.decks
       };
-    case NEW_DECK:
+    case ADD_DECK:
       return {
         ...state,
-        [title]: {
-          title,
-          questions: []
+        decks: {
+          ...state.decks,
+          [tolower(action.title)]: {
+            title: action.title,
+            questions: []
+          }
         }
       };
-
-    case REMOVE_DECK: {
+    case ADD_CARD:
+      const { id, card } = action;
       return {
         ...state,
-        [title]: {
-          title: null
+        decks: {
+          ...state.decks,
+          [id]: {
+            ...state.decks[id],
+            questions: [...state.decks[id].questions, card]
+          }
         }
       };
-    }
-    // case card
-    case NEW_CARD: {
-      submitEntry({
-        key: title,
-        entry: {
-          title,
-          questions: [
-            { result: null, question, answer },
-            ...state[title].questions
-          ]
-        }
-      });
-      return {
-        ...state,
-        [title]: {
-          title,
-          questions: [
-            { result: null, question, answer },
-            ...state[title].questions
-          ]
-        }
-      };
-    }
-
-    case PLAY_CARD: {
-      submitEntry({
-        key: title,
-        entry: {
-          title,
-          questions: [
-            ...state[title].questions.map(item => {
-              return item.question === question
-                ? { result, question: item.question, answer: item.answer }
-                : item;
-            })
-          ]
-        }
-      });
-      return {
-        ...state,
-        [title]: {
-          title,
-          questions: [
-            ...state[title].questions.map(item => {
-              return item.question === question
-                ? { result, question: item.question, answer: item.answer }
-                : item;
-            })
-          ]
-        }
-      };
-    }
-
     default:
-      return {
-        state
-      };
+      return state;
   }
 }
+
+export default deck;

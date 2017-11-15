@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import DeckList from './src/components/DeckList'
 import Deck from './src/components/Deck'
 import NewDeck from './src/components/NewDeck'
+import AddCard from './src/components/AddCard'
 import Quiz from './src/components/Quiz'
 import { Header, Card, List, ListItem, Button } from 'react-native-elements'
 import reducer from './src/reducers'
@@ -44,6 +45,12 @@ const RootNavigator = StackNavigator({
     screen: NewDeck,
     navigationOptions: {
       title: 'Add New Question'
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      title: 'Add New Card'
     }
   },
   Quiz: {

@@ -11,7 +11,7 @@ function deck(state = initialState, action) {
         ...state,
         decks: action.decks
       };
-    case ADD_DECK:
+    case ADD_NEW_DECK:
       return {
         ...state,
         decks: {
@@ -22,7 +22,7 @@ function deck(state = initialState, action) {
           }
         }
       };
-    case ADD_CARD:
+    case ADD_NEW_CARD:
       const { id, card } = action;
       return {
         ...state,

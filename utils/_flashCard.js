@@ -4,8 +4,8 @@ export const FLASHCARD_STORAGE_KEY = 'flashcards:deck'
 
 export function MockData () {
   const Data = {
-    JavaScript: {
-      title: 'JavaScript',
+    javascript: {
+      title: 'javascript',
       questions: [
         {
           question: 'What is a closure?',
@@ -14,8 +14,8 @@ export function MockData () {
         }
       ]
     },
-    React: {
-      title: 'React',
+    react: {
+      title: 'react',
       questions: [
         {
           question: 'What is React?',

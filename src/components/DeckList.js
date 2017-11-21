@@ -21,9 +21,9 @@ class DeckList extends Component {
     return decks;
   }
 
-  handlePress = (title) => {
-   const deckTitle = tolower(title);
-   this.props.navigation.navigate("Deck", { deckTitle });
+  handlePress = title => {
+    const deckTitle = tolower(title);
+    this.props.navigation.navigate("Deck", { deckTitle });
   };
 
   render() {

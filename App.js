@@ -41,12 +41,6 @@ const RootNavigator = StackNavigator({
       title: 'Deck'
     }
   },
-  NewDeck: {
-    screen: NewDeck,
-    navigationOptions: {
-      title: 'Add New Question'
-    }
-  },
   AddCard: {
     screen: AddCard,
     navigationOptions: {

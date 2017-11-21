@@ -1,16 +1,17 @@
-import { RECEIVE_DECKS, ADD_NEW_DECK, ADD_NEW_CARD } from "../actions";
+import { RECEIVE_DECKS, ADD_NEW_DECK, ADD_NEW_CARD } from '../actions'
+import tolower from 'lodash.tolower'
 
 const initialState = {
   decks: {}
-};
+}
 
-function deck(state = initialState, action) {
+function deck (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
       return {
         ...state,
         decks: action.decks
-      };
+      }
     case ADD_NEW_DECK:
       return {
         ...state,
@@ -21,9 +22,9 @@ function deck(state = initialState, action) {
             questions: []
           }
         }
-      };
+      }
     case ADD_NEW_CARD:
-      const { id, card } = action;
+      const { id, card } = action
       return {
         ...state,
         decks: {
@@ -33,10 +34,10 @@ function deck(state = initialState, action) {
             questions: [...state.decks[id].questions, card]
           }
         }
-      };
+      }
     default:
-      return state;
+      return state
   }
 }
 
-export default deck;
+export default deck

@@ -23,11 +23,11 @@ class DeckList extends Component {
 
   handlePress = title => {
     const deckTitle = tolower(title);
+     console.log(this.props);
     this.props.navigation.navigate("Deck", { deckTitle });
   };
 
   render() {
-    console.log(this.props.navigations);
     return (
       <View style={{ width: 350 }}>
         <FlatList

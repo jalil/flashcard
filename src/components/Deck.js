@@ -7,22 +7,24 @@ import { connect } from "react-redux";
 class Deck extends Component {
   Quiz = deckTitle => {
     this.props.navigation.navigate("Quiz", {
-      deckName: this.props.navigation.state.params.deckTitle
+      deckTitle: this.props.navigation.state.params.deckTitle
     });
   };
 
    addCard = (deckTitle) => {
   this.props.navigation.navigate("AddCard",{
-    deckTitle: this.props.navigation.state.params
+    deckTitle,
+    update: () => this.refreshOnGoBack()
   });
  }
   render() {
+    console.log("jalil",this.props.navigation);
     const { deckTitle } = this.props.navigation.state.params;
     const questionCount = this.props.decks[deckTitle].questions.length;
    const cardText = questionCount === 1 ? " 1 card" : ` ${questionCount} cards`;
     return (
       <View>
-        <Text style={styles.title}>
+        <Text style={{justifyContent: "center",fontSize: 25,alignSelf: "center"}}>
            {deckTitle}
         </Text>
 	<Text style={{ fontSize: 15,justifyContent: "center", alignSelf: "center"}}> {cardText }</Text>
@@ -39,7 +41,7 @@ class Deck extends Component {
 }
 
 styles = {
-  title: {
+  cardTitle: {
     fontSize: 25,
     justifyContent: "center",
     alignSelf: "center"

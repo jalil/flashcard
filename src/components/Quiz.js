@@ -1,64 +1,103 @@
-import _ from "lodash";
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { View, Text } from 'react-native'
-import {Button} from 'react-native-elements'
+import React, { Component } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import {clearLocalNotification,setLocalNotification} from "../../utils/notifications";
+import  Card  from "./Card";
+import { fetchAllDecks } from "../../utils/api";
 
 class Quiz extends Component {
   state = {
-	index: 0,
-}
-QuestionsArray(title) {
-    const decks = _.map(this.props.decks[title].questions, val => {
-      return { ...val };
-    });
-    return decks;
-  }
-askQuestion() {
-   const  deckName = this.props.navigation.state.params.deckName;
-   console.log(deckName);
-//  const  questions =  this.QuestionsArray(deckName)[deckName]
-   questions = this.props.decks[deckName].questions;
-   const question = (questions[0].question);
-  return 
-question
+    index: 0,
+    score: 0,
+    done: false
+  };
 
-}
-correctAnswer () {
+  handleAnswer = correct => {
+    const deckTitle = this.props.navigation.state.params.deckTitle;
+    const questions = this.props.decks[deckTitle].questions;
+    let { score, index, done } = this.state;
 
-   const  deckName = this.props.navigation.state.params.deckName;
-   console.log(deckName);
-//  const  questions =  this.QuestionsArray(deckName)[deckName]
-   questions = this.props.decks[deckName].questions;
-   const question = (questions[0].question);
+    score = correct ? score + 1 : score;
+    index++;
+    done = index === questions.length;
+    this.setState({ index, score, done });
 
-}
-  render () {
-   const  deckName = this.props.navigation.state.params.deckName;
-   console.log(deckName);
-//  const  questions =  this.QuestionsArray(deckName)[deckName]
-   questions = this.props.decks[deckName].questions;
-   const question = (questions[0].question);
+    if (done) {
+      clearLocalNotification().then(setLocalNotification);
+    }
+  };
+
+  restartQuiz = () => {
+    this.setState({ index: 0, score: 0, done: false });
+  };
+
+  backToDeck = () => {
+    this.props.navigation.goBack();
+  };
+
+  render() {
+   console.log("WTD",this.props);
+    const {deckTitle} = this.props.navigation.state.params;
+    const questions = this.props.decks[deckTitle].questions;
+    const { index, score, done } = this.state;
+    if (done) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.title}>
+            Result: {Math.floor(score / questions.length * 100)}% Correct
+          </Text>
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={this.restartQuiz}
+          >
+            <Text style={styles.btnTitle}>Restart Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={this.backToDeck}
+          >
+            <Text style={styles.btnTitle}>Back to Deck</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
     return (
-      <View>
-        <Text style={styles.question}> 
-        {question}
-       </Text>
-	<Text/>
-        <Button title="Correct" onPress={() => console.log("Correct") } />
-	<Text/>
-        <Button title="Incorrect"  onPress={ () => console.log("Incorrect")}/>
+      <View style={styles.container}>
+        <Text>
+          Correct Answers: {score} out of {questions.length}
+        </Text>
+        <Text>Questions Remaining: {questions.length - index}</Text>
+        <Card card={questions[index]} handleAnswer={this.handleAnswer} />
       </View>
-    )
+    );
   }
 }
 
-styles = {
-  question: {
-     marginTop: 10,
-    fontSize: 20,
-    justifyContent: "center",
-    alignSelf: "center"
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30
   },
-};
-export default connect(state => state)(Quiz)
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  btnContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "grey",
+    borderRadius: 5,
+    marginTop: 15,
+    width: 240,
+    maxHeight: 40
+  },
+  btnTitle: {
+    fontSize: 20,
+    color: "white",
+    marginTop: 10
+  }
+});
+
+export default connect(state => state)(Quiz);

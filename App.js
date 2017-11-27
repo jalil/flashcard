@@ -10,6 +10,7 @@ import reducer from './src/reducers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import { setLocalNotification } from "./utils/notifications";
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -56,6 +57,10 @@ const RootNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+
+ componentDidMount() {
+    setLocalNotification();
+  }
   renderDeck (deck) {
     return (
       <Text>

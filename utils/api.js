@@ -6,7 +6,7 @@ export function fetchAllDecks () {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then(MockData)
 }
 
-export function AddNewDeck (DeckName) {
+export function SaveNewDeck (DeckName) {
   const deckTitle = tolower(DeckName)
   return AsyncStorage.mergeItem(
     FLASHCARD_STORAGE_KEY,

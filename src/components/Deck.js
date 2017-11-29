@@ -18,7 +18,6 @@ class Deck extends Component {
   });
  }
   render() {
-    console.log("jalil",this.props.navigation);
     const { deckTitle } = this.props.navigation.state.params;
     const questionCount = this.props.decks[deckTitle].questions.length;
    const cardText = questionCount === 1 ? " 1 card" : ` ${questionCount} cards`;

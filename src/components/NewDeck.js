@@ -5,7 +5,7 @@ import { View, Text, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
 import { addNewDeck } from "../actions/";
 import { connect } from "react-redux";
-import {AddNewDeck} from '../../utils/api'
+import {SaveNewDeck} from '../../utils/api'
 
 class NewDeck extends Component {
   constructor(props) {
@@ -16,13 +16,11 @@ class NewDeck extends Component {
   NewDeck() {
    const { title } = this.state;
    const deckId = tolower(title);
-    this.setState({ title: ""} )
-    this.props.dispatch(addNewDeck(this.state.title));
-  //this.props.navigation.navigate("Deck" ,{deckId});
- //  console.log(deckId);
- //  console.log("SENTINAL");
- //  console.log(this.state.title);
-  console.log(AddNewDeck({title}));
+    this.props.dispatch(addNewDeck(deckId));
+//  this.props.navigation.navigate("Deck" ,{deckId});
+  SaveNewDeck(deckId);
+   this.setState({ title: ""} )
+ this.props.navigation.navigate("DeckList");
 }
  
   render () {

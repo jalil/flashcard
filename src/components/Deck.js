@@ -18,22 +18,26 @@ class Deck extends Component {
   });
  }
   render() {
-    const { deckTitle } = this.props.navigation.state.params;
-    const questionCount = this.props.decks[deckTitle].questions.length;
+ const { decks, navigation } = this.props;
+//    const { deckTitle } = this.props.navigation.state.params;
+ const deck = decks[navigation.state.params.deckId];
+ const questionCount = deck.questions.length;
+  console.log("iacad",questionCount);
+   // const questionCount = this.props.decks[deckTitle].questions.length;
    const cardText = questionCount === 1 ? " 1 card" : ` ${questionCount} cards`;
     return (
       <View>
         <Text style={{justifyContent: "center",fontSize: 25,alignSelf: "center"}}>
-           {deckTitle}
+           {deck.title}
         </Text>
 	<Text style={{ fontSize: 15,justifyContent: "center", alignSelf: "center"}}> {cardText }</Text>
         <Button
           title="Add a Card"
           buttonStyle={{ marginTop: 10 }}
-          onPress={() => this.addCard({deckTitle})}
+          onPress={() => this.addCard(deck.title)}
         />
         <Text />
-        <Button title="Start Quiz" onPress={() => this.Quiz(deckTitle)} />
+        <Button title="Start Quiz" onPress={() => this.Quiz(deck.title)} />
       </View>
     );
   }

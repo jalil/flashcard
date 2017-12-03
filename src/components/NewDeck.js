@@ -20,7 +20,9 @@ class NewDeck extends Component {
 //  this.props.navigation.navigate("Deck" ,{deckId});
   SaveNewDeck(deckId);
    this.setState({ title: ""} )
- this.props.navigation.navigate("DeckList");
+  console.log("Jalil",deckId)
+ this.props.navigation.navigate("Deck",{deckId});
+
 }
  
   render () {

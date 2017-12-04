@@ -18,12 +18,18 @@ class Deck extends Component {
   });
  }
   render() {
+<<<<<<< HEAD
  const { decks, navigation } = this.props;
 //    const { deckTitle } = this.props.navigation.state.params;
  const deck = decks[navigation.state.params.deckId];
  const questionCount = deck.questions.length;
   console.log("iacad",questionCount);
    // const questionCount = this.props.decks[deckTitle].questions.length;
+=======
+   const { decks, navigation } = this.props;
+   const deck = decks[navigation.state.params.deckTitle]
+   const questionCount = deck.questions.length;
+>>>>>>> working-branch
    const cardText = questionCount === 1 ? " 1 card" : ` ${questionCount} cards`;
     return (
       <View>

@@ -15,8 +15,7 @@ class NewDeck extends Component {
 };
 
 saveCard = () => {
-    const {deckTitle} = this.props.navigation.state.params.deckTitle;
-   console.log("POW",deckTitle);
+    const {deckTitle} = this.props.navigation.state.params;
      const { question, answer } = this.state;
      this.props.dispatch(addNewCard(deckTitle, { question, answer }));
     saveNewCard(deckTitle, { question, answer });

@@ -10,17 +10,16 @@ import {SaveNewDeck} from '../../utils/api'
 class NewDeck extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: 'Deck Title' };
+    this.state = { title: 'DeckName' };
   }
 
   NewDeck() {
    const { title } = this.state;
-   const deckId = tolower(title);
-    this.props.dispatch(addNewDeck(deckId));
-//  this.props.navigation.navigate("Deck" ,{deckId});
-  SaveNewDeck(deckId);
+   const deckTitle = tolower(title);
+    this.props.dispatch(addNewDeck(deckTitle));
+  SaveNewDeck(deckTitle);
    this.setState({ title: ""} )
- this.props.navigation.navigate("DeckList");
+  this.props.navigation.navigate("Deck" ,{deckTitle});
 }
  
   render () {

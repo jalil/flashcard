@@ -7,11 +7,11 @@ export function fetchAllDecks () {
 }
 
 export function SaveNewDeck (DeckName) {
-  const deckTitle = tolower(DeckName)
+  const deckId = tolower(DeckName)
   return AsyncStorage.mergeItem(
     FLASHCARD_STORAGE_KEY,
     JSON.stringify({
-      [deckTitle]: {
+      [deckId]: {
         title: DeckName,
         questions: []
       }

@@ -23,7 +23,6 @@ class DeckList extends Component {
 
   handlePress = title => {
     const deckTitle = tolower(title);
-     console.log(this.props);
     this.props.navigation.navigate("Deck", { deckTitle });
   };
 

@@ -36,7 +36,6 @@ class Quiz extends Component {
   };
 
   render() {
-   console.log("WTD",this.props);
     const {deckTitle} = this.props.navigation.state.params;
     const questions = this.props.decks[deckTitle].questions;
     const { index, score, done } = this.state;

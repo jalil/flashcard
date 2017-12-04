@@ -19,9 +19,6 @@ class NewDeck extends Component {
     this.props.dispatch(addNewDeck(deckTitle));
   SaveNewDeck(deckTitle);
    this.setState({ title: ""} )
-  console.log("Jalil",deckId)
- this.props.navigation.navigate("Deck",{deckId});
-
   this.props.navigation.navigate("Deck" ,{deckTitle});
 }
  

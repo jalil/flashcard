@@ -5,12 +5,11 @@ import { Header, Card, List, ListItem, Button } from 'react-native-elements'
 import reducer from './src/reducers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { setLocalNotification } from "./utils/notifications";
+import { setLocalNotification } from './utils/notifications'
 
 export default class App extends React.Component {
-
- componentDidMount() {
-    setLocalNotification();
+  componentDidMount () {
+    setLocalNotification()
   }
 
   render () {

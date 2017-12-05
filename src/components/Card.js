@@ -16,7 +16,9 @@ export default class Card extends Component {
       return (
         <View style={styles.container}>
           <Text style={styles.title}>Answer:</Text>
-          <Text style={styles.text}>{this.props.card.answer}</Text>
+          <Text style={styles.text}>
+            {this.props.card.answer}
+          </Text>
           <TouchableOpacity
             style={styles.btnContainer}
             onPress={() => {
@@ -42,7 +44,9 @@ export default class Card extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Question:</Text>
-        <Text style={styles.text}>{this.props.card.question}</Text>
+        <Text style={styles.text}>
+          {this.props.card.question}
+        </Text>
         <TouchableOpacity style={styles.btnContainer} onPress={this.flipCard}>
           <Text style={styles.btnTitle}>Show Answer</Text>
         </TouchableOpacity>

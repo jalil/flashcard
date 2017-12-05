@@ -11,24 +11,39 @@ class Deck extends Component {
     });
   };
 
-   addCard = (deckTitle) => {
-  this.props.navigation.navigate("AddCard",{
-    deckTitle,
-    update: () => this.refreshOnGoBack()
-  });
- }
+  addCard = deckTitle => {
+    this.props.navigation.navigate("AddCard", {
+      deckTitle,
+      update: () => this.refreshOnGoBack()
+    });
+  };
   render() {
- const { decks, navigation } = this.props;
- //const questionCount = deck.questions.length;
-   const deck = decks[navigation.state.params.deckTitle]
-   const questionCount = deck.questions.length;
-   const cardText = questionCount === 1 ? " 1 card" : ` ${questionCount} cards`;
+    const { decks, navigation } = this.props;
+    //const questionCount = deck.questions.length;
+    const deck = decks[navigation.state.params.deckTitle];
+    const questionCount = deck.questions.length;
+    const cardText =
+      questionCount === 1 ? " 1 card" : ` ${questionCount} cards`;
     return (
       <View>
-        <Text style={{justifyContent: "center",fontSize: 25,alignSelf: "center"}}>
-           {deck.title}
+        <Text
+          style={{
+            justifyContent: "center",
+            fontSize: 25,
+            alignSelf: "center"
+          }}
+        >
+          {deck.title}
         </Text>
-	<Text style={{ fontSize: 15,justifyContent: "center", alignSelf: "center"}}> {cardText }</Text>
+        <Text
+          style={{
+            fontSize: 15,
+            justifyContent: "center",
+            alignSelf: "center"
+          }}
+        >
+          {" "}{cardText}
+        </Text>
         <Button
           title="Add a Card"
           buttonStyle={{ marginTop: 10 }}
@@ -46,6 +61,6 @@ styles = {
     fontSize: 25,
     justifyContent: "center",
     alignSelf: "center"
-  },
+  }
 };
 export default connect(state => state)(Deck);

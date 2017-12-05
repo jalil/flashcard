@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import {clearLocalNotification,setLocalNotification} from "../../utils/notifications";
-import  Card  from "./Card";
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from "../../utils/notifications";
+import Card from "./Card";
 import { fetchAllDecks } from "../../utils/api";
 
 class Quiz extends Component {
@@ -36,7 +39,7 @@ class Quiz extends Component {
   };
 
   render() {
-    const {deckTitle} = this.props.navigation.state.params;
+    const { deckTitle } = this.props.navigation.state.params;
     const questions = this.props.decks[deckTitle].questions;
     const { index, score, done } = this.state;
     if (done) {
@@ -66,7 +69,9 @@ class Quiz extends Component {
         <Text>
           Correct Answers: {score} out of {questions.length}
         </Text>
-        <Text>Questions Remaining: {questions.length - index}</Text>
+        <Text>
+          Questions Remaining: {questions.length - index}
+        </Text>
         <Card card={questions[index]} handleAnswer={this.handleAnswer} />
       </View>
     );

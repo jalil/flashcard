@@ -1,40 +1,45 @@
-import _ from "lodash";
-import tolower from "lodash.tolower";
+import _ from 'lodash'
+import tolower from 'lodash.tolower'
 import React, { Component } from 'react'
 import { View, Text, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
-import { addNewDeck } from "../actions/";
-import { connect } from "react-redux";
-import {SaveNewDeck} from '../../utils/api'
+import { addNewDeck } from '../actions/'
+import { connect } from 'react-redux'
+import { SaveNewDeck } from '../../utils/api'
 
 class NewDeck extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { title: 'DeckName' };
+  constructor (props) {
+    super(props)
+    this.state = { title: 'DeckName' }
   }
 
-  NewDeck() {
-   const { title } = this.state;
-   const deckTitle = tolower(title);
-    this.props.dispatch(addNewDeck(deckTitle));
-  SaveNewDeck(deckTitle);
-   this.setState({ title: ""} )
-  this.props.navigation.navigate("Deck" ,{deckTitle});
-}
- 
+  NewDeck () {
+    const { title } = this.state
+    const deckTitle = tolower(title)
+    this.props.dispatch(addNewDeck(deckTitle))
+    SaveNewDeck(deckTitle)
+    this.setState({ title: '' })
+    this.props.navigation.navigate('Deck', { deckTitle })
+  }
+
   render () {
     return (
       <View>
-        <Text style={styles.title} >What is the title of your new deck </Text>
-     <Text />
-          <TextInput
-             style={{height: 40, borderColor: 'gray', borderWidth: 1, margin: 20}}
- onChangeText={(title) => this.setState({title})}
-            value={this.state.title}
-          />
+        <Text style={styles.title}>What is the title of your new deck </Text>
+        <Text />
+        <TextInput
+          style={{
+            height: 40,
+            borderColor: 'gray',
+            borderWidth: 1,
+            margin: 20
+          }}
+          onChangeText={title => this.setState({ title })}
+          value={this.state.title}
+        />
 
-	<Text />
-      <Button title="Submit" onPress={()  => this.NewDeck()}  />
+        <Text />
+        <Button title='Submit' onPress={() => this.NewDeck()} />
       </View>
     )
   }
@@ -44,7 +49,7 @@ styles = {
     fontSize: 25,
     justifyContent: 'center',
     alignSelf: 'center',
-   margin: 25
+    margin: 25
   }
-};
-export default connect()(NewDeck);
+}
+export default connect()(NewDeck)

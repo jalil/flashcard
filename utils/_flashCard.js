@@ -29,6 +29,6 @@ export function MockData () {
     }
   }
 
- AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(Data))
-  return Data;
+  AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(Data))
+  return Data
 }

@@ -13,16 +13,18 @@ class FlipCard extends Component {
   render() {
     if (this.state.showAnswer) {
       return (
-        <View >
-          <Text >Answer:</Text>
-          <Text >{this.props.card.answer}</Text>
+        <View>
+          <Text>Answer:</Text>
+          <Text>
+            {this.props.card.answer}
+          </Text>
           <TouchableOpacity
             onPress={() => {
               this.flipCard();
               this.props.handleAnswer(true);
             }}
           >
-            <Text >Correct</Text>
+            <Text>Correct</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
@@ -37,15 +39,16 @@ class FlipCard extends Component {
     }
     return (
       <View style={styles.container}>
-        <Text >Question:</Text>
-        <Text >{this.props.card.question}</Text>
-        <TouchableOpacity  onPress={this.flipCard}>
-          <Text >Show Answer</Text>
+        <Text>Question:</Text>
+        <Text>
+          {this.props.card.question}
+        </Text>
+        <TouchableOpacity onPress={this.flipCard}>
+          <Text>Show Answer</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
 
 export default FlipCard;

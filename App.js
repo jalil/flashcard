@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { RootNavigator } from './src/common/routes'
+import { RootNavigator } from './src/navigation/routes'
 import { Header, Card, List, ListItem, Button } from 'react-native-elements'
 import reducer from './src/reducers'
 import { createStore } from 'redux'

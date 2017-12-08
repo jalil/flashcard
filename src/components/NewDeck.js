@@ -13,12 +13,11 @@ class NewDeck extends Component {
     this.state = { title: 'DeckName' }
   }
 
-  NewDeck () {
+  newDeck () {
     const { title } = this.state
     const deckTitle = tolower(title)
     this.props.dispatch(addNewDeck(deckTitle))
     SaveNewDeck(deckTitle)
-    this.setState({ title: '' })
     this.props.navigation.navigate('Deck', { deckTitle })
   }
 
@@ -39,7 +38,7 @@ class NewDeck extends Component {
         />
 
         <Text />
-        <Button title='Submit' onPress={() => this.NewDeck()} />
+        <Button title='Submit' onPress={() => this.newDeck()} />
       </View>
     )
   }

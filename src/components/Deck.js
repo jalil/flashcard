@@ -5,7 +5,7 @@ import { Card, List, ListItem, Button } from "react-native-elements";
 import { connect } from "react-redux";
 
 class Deck extends Component {
-  Quiz = deckTitle => {
+  startQuiz = deckTitle => {
     this.props.navigation.navigate("Quiz", {
       deckTitle: this.props.navigation.state.params.deckTitle
     });
@@ -19,7 +19,6 @@ class Deck extends Component {
   };
   render() {
     const { decks, navigation } = this.props;
-    //const questionCount = deck.questions.length;
     const deck = decks[navigation.state.params.deckTitle];
     const questionCount = deck.questions.length;
     const cardText =
@@ -50,7 +49,7 @@ class Deck extends Component {
           onPress={() => this.addCard(deck.title)}
         />
         <Text />
-        <Button title="Start Quiz" onPress={() => this.Quiz(deck.title)} />
+        <Button title="Start Quiz" onPress={() => this.startQuiz(deck.title)} />
       </View>
     );
   }
